@@ -1,5 +1,5 @@
 import * as React from "react"
-import { graphql, HeadFC } from "gatsby"
+import { graphql, HeadFC, PageProps } from "gatsby"
 import { Container, Row, Col } from "react-bootstrap"
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -10,7 +10,7 @@ import { StaticImage } from "gatsby-plugin-image"
 
 
 
-const IndexPage = ({ data, location }: { data: any, location: any }) => {
+const IndexPage = ({ data }: PageProps<Queries.IndexPageQuery>) => {
   const pages = data.allMdx.nodes
 
   console.log({ pages })
@@ -57,7 +57,7 @@ export const Head: HeadFC = () => <Seo title="Home Page" />
 
 
 export const pageQuery = graphql`
-  query {
+  query IndexPage {
     allMdx(sort: {fields: frontmatter___date, order: DESC}) {
       nodes {
         id

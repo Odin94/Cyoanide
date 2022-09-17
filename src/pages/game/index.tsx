@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { Link, graphql } from 'gatsby'
+import { Link, graphql, PageProps } from 'gatsby'
 import Layout from '../../components/Layout'
 import Seo from '../../components/Seo'
 
-const Games = ({ data }: { data: any }) => {
+const Games = ({ data }: PageProps<Queries.GamesQuery>) => {
   return (
     <Layout pageTitle="My Games">
       {
@@ -22,7 +22,7 @@ const Games = ({ data }: { data: any }) => {
 }
 
 export const query = graphql`
-  query {
+  query Games {
     allMdx(sort: {fields: frontmatter___date, order: DESC}) {
       nodes {
         frontmatter {

@@ -3,18 +3,27 @@
 
 
 import * as React from 'react'
-import { graphql } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { graphql, HeadFC, HeadProps, PageProps } from 'gatsby'
+import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image'
 import Layout from '../../components/Layout'
 import Seo from '../../components/Seo'
 
-export type GamePageProps = {
-  data: any,
-  children: React.ReactNode
+// type auto-generation from queries only works if queries can be named
+// query in template-y files can't be named because they'd create multiple queries with the same name
+type DataProps = {
+  mdx: {
+    frontmatter: {
+      title: string
+      date: string,
+      hero_image_alt: string,
+      hero_image_credit_link: string,
+      hero_image_credit_text: string,
+      hero_image: ImageDataLike
+    }
+  }
 }
 
-
-const GamePage = ({ data, children }: GamePageProps) => {
+const GamePage = ({ data, children }: PageProps<DataProps>) => {
   const image = getImage(data.mdx.frontmatter.hero_image)!
 
   return (
@@ -55,6 +64,6 @@ export const query = graphql`
   }
 `
 
-export const Head = ({ data }: { data: any }) => <Seo title={data.mdx.frontmatter.title} />
+export const Head: HeadFC<DataProps> = ({ data }: HeadProps<DataProps>) => <Seo title={data.mdx.frontmatter.title} />
 
 export default GamePage
