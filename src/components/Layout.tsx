@@ -50,6 +50,7 @@ const Layout = ({ pageTitle, children }: LayoutProps) => {
                     {children}
                 </MDXProvider>
             </main>
+            <div className="empty-space"></div>
         </Container>
     )
 }
