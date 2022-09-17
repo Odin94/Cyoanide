@@ -31,9 +31,11 @@
     "react": "^18.1.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.1.0",
-    "sass": "^1.54.9"
+    "sass": "^1.54.9",
+    "use-sound": "^4.0.1"
   },
   "devDependencies": {
+    "@types/howler": "^2.2.7",
     "@types/node": "^17.0.45",
     "@types/react": "^18.0.19",
     "@types/react-dom": "^18.0.6",

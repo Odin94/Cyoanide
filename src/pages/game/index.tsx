@@ -4,6 +4,7 @@ import Layout from '../../components/Layout'
 import Seo from '../../components/Seo'
 
 const Games = ({ data }: PageProps<Queries.GamesQuery>) => {
+  Howler.stop()
   return (
     <Layout pageTitle="My Games">
       {

@@ -13,7 +13,7 @@ import { StaticImage } from "gatsby-plugin-image"
 const IndexPage = ({ data }: PageProps<Queries.IndexPageQuery>) => {
   const pages = data.allMdx.nodes
 
-  console.log({ pages })
+  Howler.stop()
 
   if (pages.length === 0) {
     return (

@@ -2,11 +2,13 @@
 // See https://www.gatsbyjs.com/docs/tutorial/part-6/#task-create-blog-post-page-template
 
 
-import * as React from 'react'
+import React from 'react'
 import { graphql, HeadFC, HeadProps, PageProps } from 'gatsby'
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image'
 import Layout from '../../components/Layout'
 import Seo from '../../components/Seo'
+import useSound from 'use-sound'
+import { Howl, Howler } from 'howler'
 
 // type auto-generation from queries only works if queries can be named
 // query in template-y files can't be named because they'd create multiple queries with the same name
@@ -19,11 +21,29 @@ type DataProps = {
       hero_image_credit_link: string,
       hero_image_credit_text: string,
       hero_image: ImageDataLike
+      music?: {
+        publicURL?: string
+      }
     }
   }
 }
 
 const GamePage = ({ data, children }: PageProps<DataProps>) => {
+  const music = data.mdx.frontmatter.music?.publicURL
+
+  const musicIsAlreadyPlaying = (Howler as any)._howls.find((howl: Howl | any) => {
+    return howl._src === music && howl.playing()
+  })
+
+  if (!musicIsAlreadyPlaying) {
+    Howler.stop()
+
+    if (music) {
+      const [play, { stop, sound: Howl }] = useSound(music, { loop: true });
+      play()
+    }
+  }
+
   const image = getImage(data.mdx.frontmatter.hero_image)!
 
   return (
@@ -58,6 +78,9 @@ export const query = graphql`
           childImageSharp {
             gatsbyImageData
           }
+        }
+        music {
+          publicURL
         }
       }
     }
