@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap"
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "../styles.scss"
-import Layout from "../components/Layout"
+import NavbarLayout from "../components/NavbarLayout"
 import Seo from "../components/Seo"
 import { StaticImage } from "gatsby-plugin-image"
 
@@ -22,32 +22,13 @@ const IndexPage = ({ data }: PageProps<Queries.IndexPageQuery>) => {
   }
 
   return (
-    <Container style={{ marginTop: "40px" }}>
-      <Row xs={4}>
-        <Col>
-          <h1>Hi</h1>
-          <p>You come across a thing</p>
-          <a href="/">investigate</a>
-        </Col>
-      </Row>
-
-      <Layout pageTitle="Home Page">
-        <p>I'm making this by following the Gatsby Tutorial.</p>
-        <StaticImage className="dog-image"
-          alt="Clifford, a reddish-brown pitbull, posing on a couch and looking stoically at the camera"
-          src="https://pbs.twimg.com/media/E1oMV3QVgAIr1NT?format=jpg&name=large"
-        />
-        <ul>
-          {pages.map((page: any) => {
-            return (
-              <li key={page.frontmatter.slug}>
-                <a href={page.frontmatter.slug}>{page.frontmatter.title}</a>
-              </li>
-            )
-          })}
-        </ul>
-      </Layout>
-    </Container>
+    <NavbarLayout pageTitle="Home Page">
+      <p>Choose your own adventure!</p>
+      <StaticImage className="index-image"
+        alt="night sky in the forrest"
+        src="https://images.unsplash.com/photo-1515444744559-7be63e1600de?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+      />
+    </NavbarLayout>
   )
 }
 

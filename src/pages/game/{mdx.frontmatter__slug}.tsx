@@ -5,10 +5,10 @@
 import React from 'react'
 import { graphql, HeadFC, HeadProps, PageProps } from 'gatsby'
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image'
-import Layout from '../../components/Layout'
 import Seo from '../../components/Seo'
 import useSound from 'use-sound'
 import { Howl, Howler } from 'howler'
+import Layout from '../../components/Layout'
 
 // type auto-generation from queries only works if queries can be named
 // query in template-y files can't be named because they'd create multiple queries with the same name
@@ -48,7 +48,6 @@ const GamePage = ({ data, children }: PageProps<DataProps>) => {
 
   return (
     <Layout pageTitle={data.mdx.frontmatter.title}>
-      <p>{data.mdx.frontmatter.date}</p>
       <GatsbyImage
         image={image}
         alt={data.mdx.frontmatter.hero_image_alt}

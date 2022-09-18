@@ -3,6 +3,7 @@ $primary-color: #333;
 
 body {
     font: 100% $font-stack;
+    font-size: 20px;
     color: $primary-color;
     height: 100%;
 }
@@ -15,15 +16,12 @@ body,
     overflow: auto;
 }
 
-
 body {
     background: linear-gradient(#9198e530, #e6646436);
 }
 
 .container {
     height: 100%;
-}
-
-.dog-image {
-    max-width: 550px;
+    margin-top: 40px;
+    max-width: 750px;
 }

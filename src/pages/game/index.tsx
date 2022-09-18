@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { Link, graphql, PageProps } from 'gatsby'
-import Layout from '../../components/Layout'
+import NavbarLayout from '../../components/NavbarLayout'
 import Seo from '../../components/Seo'
 
 const Games = ({ data }: PageProps<Queries.GamesQuery>) => {
   Howler.stop()
   return (
-    <Layout pageTitle="My Games">
+    <NavbarLayout pageTitle="Games">
       {
         data.allMdx.nodes.map((node: any) => (
           <article key={node.id}>
@@ -18,7 +18,7 @@ const Games = ({ data }: PageProps<Queries.GamesQuery>) => {
           </article>
         ))
       }
-    </Layout>
+    </NavbarLayout>
   )
 }
 
@@ -38,6 +38,6 @@ export const query = graphql`
   }
 `
 
-export const Head = () => <Seo title="My Games" />
+export const Head = () => <Seo title="Games" />
 
 export default Games

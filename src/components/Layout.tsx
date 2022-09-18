@@ -3,6 +3,7 @@ import { Link, useStaticQuery, graphql } from 'gatsby'
 import './layout.scss'
 import { Container } from 'react-bootstrap'
 import { MDXProvider } from '@mdx-js/react'
+import poisonIcon from '../images/poison-svgrepo-com.svg'
 
 const shortcodes = { Link } // Provide common components here
 
@@ -23,29 +24,9 @@ const Layout = ({ pageTitle, children }: LayoutProps) => {
   `)
 
     return (
-        <Container>
-            <header className='site-title'>{data.site.siteMetadata.title}</header>
-            <nav>
-                <ul className="nav-links">
-                    <li className="nav-link-item">
-                        <Link to="/" className="nav-link-text">
-                            Home
-                        </Link>
-                    </li>
-                    <li className="nav-link-item">
-                        <Link to="/about" className="nav-link-text">
-                            About
-                        </Link>
-                    </li>
-                    <li className="nav-link-item">
-                        <Link to="/game" className="nav-link-text">
-                            Games
-                        </Link>
-                    </li>
-                </ul>
-            </nav>
+        <Container style={{ maxWidth: "750px" }}>
+            <div className="empty-space"></div>
             <main>
-                <h1 className="heading">{pageTitle}</h1>
                 <MDXProvider components={shortcodes}>
                     {children}
                 </MDXProvider>
