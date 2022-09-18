@@ -26,7 +26,10 @@ const Games = ({ data }: PageProps<Queries.GamesQuery>) => {
 
 export const query = graphql`
   query Games {
-    allMdx(sort: {fields: frontmatter___date, order: DESC}) {
+    allMdx(
+      filter: { frontmatter: { story_start: { eq: true } } }, 
+      sort: { fields: frontmatter___date, order: DESC }
+      ) {
       nodes {
         frontmatter {
           date(formatString: "MMMM D, YYYY")

@@ -25,7 +25,7 @@ const NavbarLayout = ({ pageTitle, children }: NavbarLayoutProps) => {
 
     return (
         <Container>
-            <p align="center">
+            <p style={{ textAlign: "center" }}>
                 <img alt="Cyoanide" src={poisonIcon} width="60" />
             </p>
             <header className='site-title'>{data.site.siteMetadata.title}</header>
