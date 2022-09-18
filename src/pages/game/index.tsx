@@ -2,6 +2,8 @@ import * as React from 'react'
 import { Link, graphql, PageProps } from 'gatsby'
 import NavbarLayout from '../../components/NavbarLayout'
 import Seo from '../../components/Seo'
+import { Howler } from 'howler'
+
 
 const Games = ({ data }: PageProps<Queries.GamesQuery>) => {
   Howler.stop()

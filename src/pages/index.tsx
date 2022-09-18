@@ -7,7 +7,7 @@ import "../styles.scss"
 import NavbarLayout from "../components/NavbarLayout"
 import Seo from "../components/Seo"
 import { StaticImage } from "gatsby-plugin-image"
-
+import { Howler } from 'howler'
 
 
 const IndexPage = ({ data }: PageProps<Queries.IndexPageQuery>) => {
