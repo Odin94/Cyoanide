@@ -7,6 +7,16 @@ import { Howler } from 'howler'
 
 const Games = ({ data }: PageProps<Queries.GamesQuery>) => {
   Howler.stop()
+
+  if (data.allMdx.nodes.length === 0) {
+    return (
+      <>
+        <h1>No games available</h1>
+        <h2>Add a folder containing an .mdx file to game-pages and make sure the frontmatter contains "story_start: true"</h2>
+      </>
+    )
+  }
+
   return (
     <NavbarLayout pageTitle="Games">
       {

@@ -1,6 +1,9 @@
 $font-stack: Helvetica, sans-serif;
 $primary-color: #333;
 
+$dark-background: linear-gradient(#181B2A, #30191A);
+$light-background: linear-gradient(#9198e530, #e6646436);
+
 body {
     font: 100% $font-stack;
     font-size: 20px;
@@ -17,11 +20,10 @@ body,
 }
 
 body {
-    background: linear-gradient(#9198e530, #e6646436);
+    background: $light-background;
 }
 
 .container {
-    height: 100%;
     margin-top: 40px;
     max-width: 750px;
 }
