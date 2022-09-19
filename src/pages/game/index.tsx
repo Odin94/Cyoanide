@@ -3,7 +3,8 @@ import { Link, graphql, PageProps } from 'gatsby'
 import NavbarLayout from '../../components/NavbarLayout'
 import Seo from '../../components/Seo'
 import { Howler } from 'howler'
-
+import { Row, Col, Card } from 'react-bootstrap'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const Games = ({ data }: PageProps<Queries.GamesQuery>) => {
   Howler.stop()
@@ -19,20 +20,32 @@ const Games = ({ data }: PageProps<Queries.GamesQuery>) => {
 
   return (
     <NavbarLayout pageTitle="Games">
-      {
-        data.allMdx.nodes.map((node: any) => (
-          <article key={node.id}>
-            <h2>
-              <Link to={`/game/${node.frontmatter.slug}`}>
-                {node.frontmatter.title}
-              </Link>
-            </h2>
-          </article>
-        ))
-      }
-    </NavbarLayout>
+      <Row>
+        {
+          data.allMdx.nodes.map((node: any) => {
+            const image = getImage(node.frontmatter.story_cover_image)
+            return (
+              <Col sm={8} key={node.id} style={{ marginTop: "25px" }}>
+                <Link to={`/game/${node.frontmatter.slug}`}>
+                  <Card style={{ background: "#151515", color: "white" }} className="hover-link">
+                    <Card.Title style={{ textAlign: "center", fontSize: "2em", padding: "5px" }}>{node.frontmatter.title}</Card.Title>
+                    {image ? <GatsbyImage image={image} alt="" objectFit={"contain"} /> : null}
+                    <Card.Text style={{ padding: "18px" }}>
+                      {node.excerpt}
+                    </Card.Text>
+                  </Card>
+                </Link>
+              </Col>
+            )
+          })
+        }
+      </Row>
+    </NavbarLayout >
   )
 }
+
+//                 cropFocus: CENTER
+// fit: COVER
 
 export const query = graphql`
   query Games {
@@ -45,6 +58,14 @@ export const query = graphql`
           date(formatString: "MMMM D, YYYY")
           title
           slug
+          story_cover_image {
+            childImageSharp {
+              gatsbyImageData(
+                placeholder: BLURRED
+
+              )
+            }
+          }
         }
         id
         excerpt

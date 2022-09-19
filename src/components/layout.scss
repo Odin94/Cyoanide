@@ -26,3 +26,14 @@
 .empty-space {
     height: 50px;
 }
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.hover-link {
+    &:hover {
+        border: 3px solid white;
+    }
+}
