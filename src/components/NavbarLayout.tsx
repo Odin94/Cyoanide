@@ -37,9 +37,9 @@ const NavbarLayout = ({ pageTitle, children }: NavbarLayoutProps) => {
                         </Link>
                     </li>
                     <li className="nav-link-item">
-                        <Link to="https://github.com/Odin94/Cyaonide" className="nav-link-text">
+                        <a href="https://github.com/Odin94/Cyaonide" className="nav-link-text">
                             Github
-                        </Link>
+                        </a>
                     </li>
                     <li className="nav-link-item">
                         <Link to="/game" className="nav-link-text">
