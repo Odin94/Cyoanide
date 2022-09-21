@@ -3,7 +3,13 @@ title: "First Night"
 slug: "first-night"
 ---
 
+import { getLevelState } from '../../src/SaveState'
+
 # Go to sleep
+
+{
+    console.log(`In mdx: ${JSON.stringify(getLevelState())}`)
+}
 
 {/* {
     {/* Try a component that you pass stuff into for if-else-ing  */}

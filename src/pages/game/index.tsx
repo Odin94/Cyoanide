@@ -1,12 +1,17 @@
-import * as React from 'react'
+import React, { useEffect } from 'react'
 import { Link, graphql, PageProps } from 'gatsby'
 import NavbarLayout from '../../components/NavbarLayout'
 import Seo from '../../components/Seo'
 import { Howler } from 'howler'
 import { Row, Col, Card } from 'react-bootstrap'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { resetLevelState } from '../../SaveState'
 
 const Games = ({ data }: PageProps<Queries.GamesQuery>) => {
+  useEffect(() => {
+    resetLevelState()
+  }, [])
+
   Howler.stop()
 
   if (data.allMdx.nodes.length === 0) {
