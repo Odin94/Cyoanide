@@ -29,7 +29,6 @@ Your `index.mdx` must start with frontmatter that contains configs. Some configs
 ---
 slug: "start"                                           # mandatory slug for your page - this will be the URL used for navigating
 title: "Start of the game"                              # mandatory title for your page
-hero_image: "./paul-chambers-Oh0pJxCXdj8-unsplash.jpg"  # optional image for your page
 music: "./chill-abstract-intention-12099.mp3"           # optional background music for your page
 ---
 

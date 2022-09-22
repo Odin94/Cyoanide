@@ -18,10 +18,6 @@ type DataProps = {
     frontmatter: {
       title: string
       date: string,
-      hero_image_alt: string,
-      hero_image_credit_link: string,
-      hero_image_credit_text: string,
-      hero_image: ImageDataLike
       music?: {
         publicURL?: string
       }
@@ -48,14 +44,8 @@ const GamePage = ({ data, children }: PageProps<DataProps>) => {
     }
   }
 
-  const image = getImage(data.mdx.frontmatter.hero_image)!
-
   return (
     <Layout pageTitle={data.mdx.frontmatter.title}>
-      <GatsbyImage
-        image={image}
-        alt={data.mdx.frontmatter.hero_image_alt}
-      />
       {children}
     </Layout>
   )
@@ -69,14 +59,6 @@ export const query = graphql`
         title
         slug
         date(formatString: "MMMM DD, YYYY")
-        hero_image_alt
-        hero_image_credit_link
-        hero_image_credit_text
-        hero_image {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
         music {
           publicURL
         }
