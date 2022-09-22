@@ -18,6 +18,7 @@ type DataProps = {
     frontmatter: {
       title: string
       date: string,
+      slug: string,
       music?: {
         publicURL?: string
       }
