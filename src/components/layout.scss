@@ -33,6 +33,14 @@ a {
     font-weight: bold;
 }
 
+// Links in mdx
+main {
+    a {
+        display: block;
+        margin-top: 15px;
+    }
+}
+
 .hover-link {
     &:hover {
         border: 3px solid white;
