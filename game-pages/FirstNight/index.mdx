@@ -7,11 +7,36 @@ import { getLevelState } from '../../src/SaveState'
 
 # Go to sleep
 
+It is late and you plan to hike into the forrest to explore tomorrow, so you all decide to go to sleep now. You and James go to your tent and lie into your respective sleeping bags. You close your eyes.
+
 {
-    console.log(`In mdx: ${JSON.stringify(getLevelState())}`)
+    getLevelState().includes("gathering-firewood") 
+        ? <div>
+            <p>No matter how long you lie still. After an hour of lying unmoving you still haven't fallen asleep. You play around on your phone for a bit and try to sleep again, but to no avail. You hear [something spoooky here that seems innocent now but comes back later as some sound the monsters make] and try to drown it out by playing something chill on your headphones, but somehow it seems to go right through your noise cancelling.</p>
+
+            <p>You can't find a second of sleep throughout the entire night until..</p>
+        </div> 
+        : <div>
+            <p>After a day of hiking and pitching the tent you fall asleep almost immediately. You wake up in the middle of the night and leave the tent to pee, and as you glimpse over at Maxine's and Halley's tent you can see the faint glimmer of a phone screen through the thin cloth of the tent. At least one of them must not be able to sleep.</p>
+
+            <p>You fall asleep again easily.</p>
+        </div>
 }
 
-{/* {
-    {/* Try a component that you pass stuff into for if-else-ing  */}
-    {/* unless you can get localstorage in here somehow - can you run js in here?? */}
-} */}
+As you leave your tent in the morning you notice a massive cloud of smoke over the forrest. You call the others and you collectively stare at the smoke. 
+
+{
+    getLevelState().includes("gathering-firewood") 
+        ? <div>
+            <p>Maxine notices the rings under your eyes and asks if you had a rough night. You tell her you couldn't sleep; probably due to the noisy forrest.</p>
+        </div> 
+        : <div>
+            <p>You notice the rings under Maxine's eyes and ask her if she had a rough night. She tells you she couldn't sleep; probably due to the noisy forrest.</p>
+        </div>
+}
+
+You're discussing what to do next. The smoke could indicate a dangerous, yet very local, forrest fire - or it could lead you to something spooky and supernatural.
+
+<Link to="../investigate-smoke">> Go investigate the smoke</Link>
+
+<Link to="../leave-the-forrest">> Leave the forrest and go home</Link>
