@@ -2,9 +2,8 @@
 // See https://www.gatsbyjs.com/docs/tutorial/part-6/#task-create-blog-post-page-template
 
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import { graphql, HeadFC, HeadProps, PageProps } from 'gatsby'
-import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image'
 import Seo from '../../components/Seo'
 import useSound from 'use-sound'
 import { Howl, Howler } from 'howler'
@@ -27,10 +26,12 @@ type DataProps = {
 }
 
 const GamePage = ({ data, children }: PageProps<DataProps>) => {
-  useEffect(() => {
-    saveLevelState(data.mdx.frontmatter.slug)
-  }, [])
   const music = data.mdx.frontmatter.music?.publicURL
+
+  // Can't do this inside something like useEffect(fn, []) because mdx doesn't re-render when data changes
+  // (at least I couldn't make a dependency to "children" clear to react)
+  // thus inside the mdx files it would sometimes have outdated levelState info
+  saveLevelState(data.mdx.frontmatter.slug)
 
   const musicIsAlreadyPlaying = (Howler as any)._howls.find((howl: Howl | any) => {
     return howl._src === music && howl.playing()
