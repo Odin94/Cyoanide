@@ -1,7 +1,36 @@
 ---
-title: "Follow Stench"
+title: "Follow the stench"
 slug: "follow-stench"
 ---
 
-# Follow Stench
+import { getLevelState } from '../../../../../src/SaveState'
+
+# Follow the stench of rotten flesh
+
+You follow the stench of rotten flesh. After some searching you find the source: The corpse of a man in camouflage uniform leaning against a tree. His throat was cut by something very sharp and it looks like an animal ripped his belly open to feast on his intestines. The putrid smell and grisly sight make Halley throw up while Maxine holds her hair. James tells you he's scared and wants to leave. From his work as a nurse he can tell this man hasn't been dead for very long based on the fly eggs in his wounds that haven't hatched into maggots yet. Who or whatever killed him might still be close.
+
+But you want to take a closer look before leaving. You notice a strange device next to the man that looks like sci-fi night vision goggles. 
+
+![img](./adrian-infernus-XQ2Rk4SPcwU-unsplash.jpg)
+
+It seems like they're some sort of infrared goggles. You decide to keep them, both because they might come in handy and as physical evidence of what you witnessed here in case the police doesn't believe your words.
+
+{/* If somebody knows how to make this work with something like this instead of having to one-line everything pls message me <3 */}
+{/* const levelState = getLevelState();   */}
+{/* const seenBunkerActions = ["investigate-bunker", "keep-your-distance", "follow-stench"].filter((it) => levelState.includes(it)) */}
+{/* seenBunkerActions.length > 2 ? [...] : [...] */}
+
+{
+    ["investigate-bunker", "keep-your-distance", "follow-stench"].filter((it) => getLevelState().includes(it)).length >= 2
+        ? <div>
+           <p>It's starting to get dark. You pull out your flashlights. They should last long enough to get you back to camp safely. But maybe you should stay and investigate this place some more..?</p>
+            <Link to="../return-to-camp">{"> Return to camp"}</Link>
+            <Link to="../stay-at-night">{"> Stick around at night"}</Link>
+          </div>
+        : <div>
+            <p>You think about what to do next.</p>
+            {!getLevelState().includes("investigate-bunker") ? <Link to="../investigate-bunker">{"> Investigate the bunker"}</Link> : null }
+            {!getLevelState().includes("keep-your-distance") ? <Link to="../keep-your-distance">{"> Explore the area around to bunker"}</Link> : null }
+          </div>
+}
 

@@ -1,6 +1,29 @@
 ---
-title: "Keep your distance"
+title: "Investigate the area"
 slug: "keep-your-distance"
 ---
 
-# Keep your distance
+import { getLevelState } from '../../../../../src/SaveState'
+
+# Investigate the area
+
+You investigate the area around the bunker. You find occasional torched spots on the ground, some burned leaves, blackened wood on a tree. You also find partially burned documents scattered around, but you can't make sense of them. They speak of dangerous beings and items in containment, and even on the unburnt text a lot has been marked over as redacted classified information. Eventually you find a binder with a few mostly intact documents.
+
+They describe a species of nearly invisible, humanoid creatures with brittle yet razor sharp claws on their hands and needle-like teeth. They hunt and eat humans. The creatures are small and physically weak, so they emit brainwaves that prevent their victims from sleeping and stalk them until they break down from exhaustion. Then they strike and kill their prey.
+
+Effective counter measures are using infrared sights to spot them or burning their skins, which makes them visible. Their bones are brittle and their skin tears easily, so while their sharm claws and teeth are dangerous, they can be beaten with simple weapons or even strong punches.
+
+
+{
+    ["investigate-bunker", "keep-your-distance", "follow-stench"].filter((it) => getLevelState().includes(it)).length >= 2
+        ? <div>
+           <p>It's starting to get dark. You pull out your flashlights. They should last long enough to get you back to camp safely. But maybe you should stay and investigate this place some more..?</p>
+            <Link to="../return-to-camp">{"> Return to camp"}</Link>
+            <Link to="../stay-at-night">{"> Stick around at night"}</Link>
+          </div>
+        : <div>
+            <p>You think about what to do next.</p>
+            {!getLevelState().includes("investigate-bunker") ? <Link to="../investigate-bunker">{"> Investigate the bunker"}</Link> : null }
+            {!getLevelState().includes("follow-stench") ? <Link to="../follow-stench">{"> Follow the stench of rotten flesh"}</Link> : null }
+          </div>
+}

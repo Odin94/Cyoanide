@@ -1,6 +1,23 @@
 ---
-title: "Investigate Bunker"
+title: "Investigate the Bunker"
 slug: "investigate-bunker"
 ---
 
-# Investigate Bunker
+import { getLevelState } from '../../../../../src/SaveState'
+
+# Investigate the Bunker
+
+
+{
+    ["investigate-bunker", "keep-your-distance", "follow-stench"].filter((it) => getLevelState().includes(it)).length >= 2
+        ? <div>
+           <p>It's starting to get dark. You pull out your flashlights. They should last long enough to get you back to camp safely. But maybe you should stay and investigate this place some more..?</p>
+            <Link to="../return-to-camp">{"> Return to camp"}</Link>
+            <Link to="../stay-at-night">{"> Stick around at night"}</Link>
+          </div>
+        : <div>
+            <p>You think about what to do next.</p>
+            {!getLevelState().includes("keep-your-distance") ? <Link to="../keep-your-distance">{"> Explore the area around to bunker"}</Link> : null }
+            {!getLevelState().includes("follow-stench") ? <Link to="../follow-stench">{"> Follow the stench of rotten flesh"}</Link> : null }
+          </div>
+}
