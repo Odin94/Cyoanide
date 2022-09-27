@@ -61,3 +61,14 @@ Moving to a different scene will stop the music and start that scene's music, if
 ### Advanced: Using MDX
 
 TODO
+
+
+### Troubleshooting
+* `SyntaxError: [...] index.mdx: Invalid left-hand side in prefix operation. (1:2)` - Happens whenever something is wrong with mdx syntax - probably something related to react components or js. Wrongly indicates `---` from frontmatter, which is usually not the actual issue
+
+
+
+
+### Credits
+* Photos from [unsplash](https://www.unsplash.com) - see filenames for individual credit
+* Big Bad Evil from sample story: [spoiler!!](https://scp-wiki.wikidot.com/scp-966)
