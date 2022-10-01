@@ -65,6 +65,7 @@ TODO
 
 ### Troubleshooting
 * `SyntaxError: [...] index.mdx: Invalid left-hand side in prefix operation. (1:2)` - Happens whenever something is wrong with mdx syntax - probably something related to react components or js. Wrongly indicates `---` from frontmatter, which is usually not the actual issue
+  * One common issue is using ">" inside an HTML tag in mdx, eg. `<Link to="...">> do thing</Link>`. Put these in a code block like `<Link to "...">{"> do thing"}</Link>`
 
 
 
