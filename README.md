@@ -18,7 +18,7 @@ Choose Your Own Adventure game "engine" built with Gatsby.
 
 
 ## How to use
-This section details how to build your own game using Cyoanide.
+This section details how to build your own game using Cyoanide. [Find a demo here.](https://cyoanide.odin-matthias.de/games)
 
 ### Writing your Story
 Each scene/page in your story should be within a folder under `game-pages`. The folder should have a descriptive name of your scene and contain a [Markdown](https://www.markdownguide.org/cheat-sheet/) file called `index.mdx` and optional image/music files used in the scene.
