@@ -9,9 +9,11 @@ import { getLevelState } from '../../../../../src/SaveState'
 
 You investigate the area around the bunker. You find occasional torched spots on the ground, some burned leaves, blackened wood on a tree. You also find partially burned documents scattered around, but you can't make sense of them. They speak of dangerous beings and items in containment, and even on the unburnt text a lot has been marked over as redacted classified information. Eventually you find a binder with a few mostly intact documents.
 
+![img](./denny-muller-XVYleJiw_As-unsplash.jpg)
+
 They describe a species of nearly invisible, humanoid creatures with brittle yet razor sharp claws on their hands and needle-like teeth. They hunt and eat humans. The creatures are small and physically weak, so they emit brainwaves that prevent their victims from sleeping and stalk them until they break down from exhaustion. Then they strike and kill their prey. In rare cases they will attack before their victims are fully exhausted. It is theorized that they do this when they are especially hungry.
 
-Effective counter measures are using infrared sights to spot them or burning their skins, which makes them visible. Their bones are brittle and their skin tears easily, so while their sharm claws and teeth are dangerous, they can be beaten with simple weapons or even strong punches.
+Effective counter measures are using infrared sights to spot them or burning their skin, which makes them visible to the naked eye. Their bones are brittle and their skin tears easily, so while their sharp claws and teeth are dangerous, they can be beaten with simple weapons or even strong punches.
 
 
 {
@@ -24,6 +26,6 @@ Effective counter measures are using infrared sights to spot them or burning the
         : <div>
             <p>You think about what to do next.</p>
             {!getLevelState().includes("investigate-bunker") ? <Link to="../investigate-bunker">{"> Investigate the bunker"}</Link> : null }
-            {!getLevelState().includes("follow-stench") ? <Link to="../follow-stench">{"> Follow the stench of rotten flesh"}</Link> : null }
+            {!getLevelState().includes("follow-stench") ? <Link to="../follow-stench">{"> Follow the stench of rotting flesh"}</Link> : null }
           </div>
 }

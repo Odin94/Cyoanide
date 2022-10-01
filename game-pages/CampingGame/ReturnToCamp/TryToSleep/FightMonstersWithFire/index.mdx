@@ -3,6 +3,8 @@ title: "Fight Monsters With Fire"
 slug: "fight-monsters-with-fire"
 ---
 
+import { getLevelState } from '../../../../../src/SaveState'
+
 # Fight the creatures with fire
 
 You remember that the creatures are weak to fire. You build flamethrowers from deodorants and lighters, and you pack your pocket knives as backup weapons.
@@ -11,14 +13,14 @@ You remember that the creatures are weak to fire. You build flamethrowers from d
 {
     getLevelState().includes("follow-stench") 
         ? <div>
-            <p>Using the infrared goggles you spot the approaching creatures. There's at least three of them, two approaching together and one isolated, trying to flank you. </p>
+            <p>Using the infrared goggles you spot the approaching creatures. There are at least three of them, two approaching together and one isolated, trying to flank you. </p>
             <p>You coordinate the others to focus their fire on the isolated creature. It's skin scorches much faster than human skin would, and it becomes visible to the naked eye. It lets loose a blood curdling scream and tries to slash at James, who manages to mostly avoid the attack, but still receives a deep cut in his arm. Blood is pouring from James' arm as Maxine jumps the creature with her knife, which cuts through its skin like paper. The creature goes down.</p>
             <p>The other two creatures hesitate after seeing what you did to their companion. You and Halley manage to take advantage of that and torch them before they can react, then take them out with your knives. To make sure you're safe you burn the unmoving bodies.</p>
             <p>You help James put on a bandage to stop the bleeding. He looks pale.</p>
             <p>You stay vigilant for a while until you're confident the creatures won't be back. Then you make the track back to the road where you were dropped off on Friday. The driver is already waiting for you.</p>
             <p>You don't tell him much, as you're sure he wouldn't believe you. But you ask him to take you to the closest village and drop you off there. From the village, you call the police.</p>
             <p>The police ask you plenty of questions. You show them all the evidence you've gathered at the bunker.</p>
-            <p>James is taken to a hospital to receive blood transfusions. The blade that made the cut was very sharp, so the bleeding hadn't stopped yet. The EMTs assure you that he will recover.</p>
+            <p>James is taken to a hospital to receive blood transfusions. The blade that made the cut was very sharp, so the bleeding hadn't fully stopped yet. The EMTs assure you that he will recover.</p>
             <p>For weeks you can't sleep. But eventually, although very lightly at first, you start slumbering again until you make a full recovery.</p>
         </div>
         : <div>

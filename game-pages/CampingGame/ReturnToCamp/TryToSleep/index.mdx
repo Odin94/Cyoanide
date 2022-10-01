@@ -3,11 +3,13 @@ title: "Try to sleep"
 slug: "try-to-sleep"
 ---
 
+import { getLevelState } from '../../../../src/SaveState'
+
 # Try to sleep
 
 You decide that you can't fight while you're this exhausted. Maxine volunteers to take the first watch while Halley, James and you lie down in your tents. As you close your eyes you notice how straining it was to keep them open all this time. Under normal circumstances you would've fallen asleep immediately, but now you can't find any rest. You switch your mind off and just lie there until Maxine pops her head in your tent, telling you the first 3 hours are over. 
 
-James and Halley are up as well, and they haven't been able to sleep either. The sun is coming up, so you decide to stop attempting to sleep. But you can all feel the impact of being awake for over 24 hours. 
+James and Halley are up as well, and they haven't been able to sleep either. The sun is coming up, so you decide to stop attempting to sleep. But you can all feel the impact of being awake for 24 hours. 
 
 {
     getLevelState().includes("gathering-firewood") 
@@ -26,8 +28,6 @@ Suddenly you hear the forrest start rustling around you, louder than ever before
 
 You're about to be attacked. What should you do?
 
-<Link to="../run-through-forrest">> Escape through the forrest. It's a long way back to the road, and an even longer way back to civilization</Link>
-
 <Link to="../fight-monsters-with-knives">{"> Grab your pocket knives and prepare to fight."}</Link>
 
 {/* If you have the read the documents */}
@@ -36,3 +36,5 @@ You're about to be attacked. What should you do?
         ? <Link to="../fight-monsters-with-fire">{"> Fight the creatures with fire."}</Link>
         : null
 }
+
+<Link to="../run-through-forrest">> Escape through the forrest. It's a long way back to the road, and an even longer way back to civilization.</Link>

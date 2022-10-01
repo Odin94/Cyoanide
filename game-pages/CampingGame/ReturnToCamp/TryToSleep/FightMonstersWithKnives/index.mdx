@@ -3,6 +3,8 @@ title: "Fight Monsters With Knives"
 slug: "fight-monsters-with-knives"
 ---
 
+import { getLevelState } from '../../../../../src/SaveState'
+
 # Fight the creatures with knives
 
 You all grab your pocket knives and prepare to fight.
@@ -11,8 +13,8 @@ You all grab your pocket knives and prepare to fight.
 {
     getLevelState().includes("follow-stench") 
         ? <div>
-            <p>Using the infrared goggles you spot the approaching creatures. There's at least three of them, two approaching together and one isolated, trying to flank you. </p>
-            <p>You coordinate the others to focus their attack on the isolated creature. James stabs at it, but he can barely see the creature and it is fast, so it manages to dodge his attack. The creature counters by slashing at James' stomach and he receives a deep cut. Maxine jumps the creature and knocks it to the ground, you can hear its brittle bones break on impact. It lets loose a blood curdling scream as she plunges her knife through its skull. Blood is pouring from James' belly as he falls to the ground, clutching the wound.</p>
+            <p>Using the infrared goggles you spot the approaching creatures. There are at least three of them, two approaching together and one isolated, trying to flank you. </p>
+            <p>You coordinate the others to focus their attack on the isolated creature. James stabs at it, but he can barely see the creature and it is fast, so it manages to dodge his attack. The creature counters by slashing at James' stomach and he receives a deep cut. Maxine jumps the creature and knocks it to the ground. You can hear its brittle bones break on impact. It lets loose a blood curdling scream as she plunges her knife through its skull. Blood is pouring from James' belly as he falls to the ground, clutching the wound.</p>
             <p>The other two creatures hesitate after seeing what you did to their companion. You and Halley try to take advantage of that and take them down before they can react, but again you are hindered by being barely able to see the transparent creatures. They manage to avoid your attacks and slip out of sight.</p>
             <p>You help James put on a bandage try and stop the bleeding, but blood soakes through the gauze quickly. He looks pale.</p>
             <p>You stay vigilant for a while until you're confident the creatures won't be back. Then you make the track back to the road where you were dropped off on Friday. You have to carry James as he can't walk on his own. The driver is already waiting for you.</p>
