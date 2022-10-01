@@ -21,15 +21,26 @@ Choose Your Own Adventure game "engine" built with Gatsby.
 This section details how to build your own game using Cyoanide.
 
 ### Writing your Story
-Each scene/page in your story should be within a folder under `game-pages`. The folder should have a descriptive name of your scene and contain a [Markdown](https://www.markdownguide.org/cheat-sheet/) file called `index.mdx`.
+Each scene/page in your story should be within a folder under `game-pages`. The folder should have a descriptive name of your scene and contain a [Markdown](https://www.markdownguide.org/cheat-sheet/) file called `index.mdx` and optional image/music files used in the scene.
 
 Your `index.mdx` must start with frontmatter that contains configs. Some configs are necessary, some are optional.
 
 ```Markdown
 ---
-slug: "start"                                           # mandatory slug for your page - this will be the URL used for navigating
-title: "Start of the game"                              # mandatory title for your page
-music: "./chill-abstract-intention-12099.mp3"           # optional background music for your page
+<!-- Put this only on the entrypoint to your story - it will make the page show up under /games -->
+story_start: true
+
+<!-- Put this only on the entrypoint to your story - this cover image will be shown for your story start under /games -->
+story_cover_image: "./mark-boss-dWs3M2rnBk8-unsplash.jpg"
+
+<!-- mandatory slug for your page - this will be the URL used for navigating -->
+slug: "start"
+
+<!-- mandatory title for your page -->
+title: "Start of the game"
+
+<!-- optional background music for your page -->
+music: "./chill-abstract-intention-12099.mp3"
 ---
 
 ## Markdown text goes here, below the frontmatter
@@ -37,18 +48,39 @@ music: "./chill-abstract-intention-12099.mp3"           # optional background mu
 Lorem ipsum dolor sit amet
 ```
 
-To link to another scene, simply add a Markdown link to that scene's slug.
+To link to another scene, simply add a Link component to that scene's slug.
 
 ```Markdown
 ---
-slug: "second-scene"                                    # mandatory slug for your page - this will be the URL used for navigating
-title: "Second scene"                                   # mandatory title for your page
+<!-- mandatory slug for your page - this will be the URL used for navigating -->
+slug: "second-scene"
+
+<!-- mandatory title for your page -->
+title: "Second scene"
 ---
 
 You meet a spooky ghost!
 
-[Stay here](/second-scene)
-[Run back to the first scene](/start)
+<!-- Including react components here is an MDXjs feature -->
+<!-- "../second-scene" will take you from /game/start to /game/second-scene -->
+<Link to="../second-scene">Stay here</Link>
+
+<Link to="../start">Run back to the first scene</Link>
+
+```
+
+### Including Images
+To include images, put the image file in the same folder as the `index.mdx` and then include it as a regular markdown image.
+
+```Markdown
+
+## Headline
+Some text
+
+![img](./image-name.jpg)
+
+More text
+
 ```
 
 
@@ -59,9 +91,88 @@ Moving to a different scene will stop the music and start that scene's music, if
 
 
 ### Advanced: Using MDX
+[MDX](https://mdxjs.com) allows you to use React components and run Javascript code in your markdown files. 
 
-TODO
+#### Using React Components
 
+```MDX
+---
+slug: "second-scene"
+title: "Second scene"
+---
+
+import { Component } from ".../some/path/component"
+
+## Title
+
+<Component></Component>
+
+```
+
+#### Running Javascript
+Basic Javascript can be run the same way you would in React's JSX
+
+```MDX
+---
+slug: "second-scene"
+title: "Second scene"
+---
+
+## Title
+
+{ Math.random() > 0.5 
+  ? <div>
+      <p>Greater One!</p>
+      <p>Note that we have to write HTML in here and can't use Markdown</p>
+    </div> 
+  : <p>Smaller than one!</p> 
+}
+```
+
+### Accessing choices taken in the past
+Sometimes a choice a player makes will impact the story later than in the very next scene, so it's not enough to have links based on player choices, we must also be able to look back on past player choices.
+
+Every time a user clicks a link in your game, the scene's slug is added to their browser's local storage. Cyoanide provides a helper function to access this data:
+
+```MDX
+---
+slug: "second-scene"
+title: "Second scene"
+---
+
+## Title
+
+<!-- Unfortunately this import is relative, so you may have to add more "../" depending on how deeply nested in folders your scene is. Sorry! -->
+<!-- getLevelState() returns a list containing the slugs of all visited pages, eg. ["start", "second-scene"] -->
+import { getLevelState } from '../src/SaveState'
+
+
+<!-- Check if 2 of 3 possible actions have been taken -->
+{
+  ["one-action", "another-action", "third-action"].filter((it) => getLevelState().includes(it)).length >= 2
+      ? <div>
+          <p>I already did two things today, time to go home!</p>
+          <Link to="../go-home">Go home</Link>
+        </div>
+      : <div>
+          <p>I haven't done two things yet, better do more things!</p>
+          <!-- Only show links to actions that haven't been taken yet -->
+          {!getLevelState().includes("one-action") ? <Link to="../one-action">Do action one</Link> : null }
+          {!getLevelState().includes("another-action") ? <Link to="../another-action">Do another action</Link> : null }
+          {!getLevelState().includes("third-action") ? <Link to="../third-action">Do 3rd action</Link> : null }
+        </div>
+}
+
+<!-- Change text based on past action taken -->
+{
+  getLevelState().includes("action-one") 
+      ? <p>I just remembered that I have taken action one this morning.</p>
+      </p> 
+      : <p>I don't remember what actions I took this morning, but it sure wasn't action one!</p>
+}
+```
+
+`getLevelState()` will update whenever the user enters a scene, either by clicking a link or by navigating back / forward in the browser. If the current scene is already stored in the level state, all stored scene-slugs after the current scene's slug will be deleted to synchronize level state with the game state the user experiences - effectively making the browser back navigation an undo action on the last choice.
 
 ### Troubleshooting
 * `SyntaxError: [...] index.mdx: Invalid left-hand side in prefix operation. (1:2)` - Happens whenever something is wrong with mdx syntax - probably something related to react components or js. Wrongly indicates `---` from frontmatter, which is usually not the actual issue
