@@ -43,6 +43,8 @@ title: "Start of the game"
 music: "./chill-abstract-intention-12099.mp3"
 ---
 
+You can nest folders however you want. It can be helpful to use that to logically structure your story to make the folder structure easier to navigate. This will not impact your game links as they are based entirely on the `slug` attribute in your frontmatter.
+
 ## Markdown text goes here, below the frontmatter
 
 Lorem ipsum dolor sit amet
@@ -142,7 +144,7 @@ title: "Second scene"
 
 ## Title
 
-<!-- Unfortunately this import is relative, so you may have to add more "../" depending on how deeply nested in folders your scene is. Sorry! -->
+<!-- Unfortunately this import uses a relative path, so you may have to add more "../" depending on how deeply nested in folders your scene is. Sorry! -->
 <!-- getLevelState() returns a list containing the slugs of all visited pages, eg. ["start", "second-scene"] -->
 import { getLevelState } from '../src/SaveState'
 
