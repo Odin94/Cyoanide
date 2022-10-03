@@ -1,6 +1,5 @@
 import * as React from "react"
-import { graphql, HeadFC, PageProps } from "gatsby"
-import { Container, Row, Col } from "react-bootstrap"
+import { graphql, HeadFC, Link, PageProps } from "gatsby"
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "../styles.scss"
@@ -28,6 +27,9 @@ const IndexPage = ({ data }: PageProps<Queries.IndexPageQuery>) => {
         alt="night sky in the forrest"
         src="https://images.unsplash.com/photo-1515444744559-7be63e1600de?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
       />
+      <p style={{ marginTop: "25px" }}>Check out the <a style={{ display: "inline" }} href="https://github.com/Odin94/Cyoanide">README on Github</a> for instructions on how to use Cyoanide to write your own stories.</p>
+      <p>Check out the <Link style={{ display: "inline" }} to="/games">Games Page</Link> to see stories hosted here.</p>
+      <p>Check out my <a style={{ display: "inline" }} href="https://www.odin-matthias.de/cyoanide">Development Blog</a> for info on the throughts & tech behind Cyoanide.</p>
     </NavbarLayout>
   )
 }
