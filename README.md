@@ -16,9 +16,13 @@ Choose Your Own Adventure game "engine" built with Gatsby.
 * Run in dev mode: `npm run develop`
 * Open http://localhost:8000
 
+Use `npm run build` to build.
+
 
 ## How to use
 This section details how to build your own game using Cyoanide. [Find a demo here.](https://cyoanide.odin-matthias.de/games)
+
+Cyoanide, at its core, works like a Gatsby starter (see [Gatsby](https://www.gatsbyjs.com)). This means you use it as a starting project for your Gatsby-powered static website and you can modify the design and add content in the form of markdown documents. On top, Cyoanide provides player decision path tracking and background music support. Look into the `game-pages/CampingGame` folder for an example.
 
 ### Writing your Story
 Each scene/page in your story should be within a folder under `game-pages`. The folder should have a descriptive name of your scene and contain a [Markdown](https://www.markdownguide.org/cheat-sheet/) file called `index.mdx` and optional image/music files used in the scene.
