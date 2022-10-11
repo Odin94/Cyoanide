@@ -188,6 +188,7 @@ import { getLevelState } from '../src/SaveState'
 
 
 ### Credits
+* Poison bottle logo: [svgrepo](https://www.svgrepo.com/svg/230355/poison)
 * Photos from [unsplash](https://www.unsplash.com) - see filenames for individual credit
 * Big Bad Evil from sample story: [spoiler!!](https://scp-wiki.wikidot.com/scp-966)
 * "Scary Forest" music by <a href="https://pixabay.com/users/sergequadrado-24990007/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=90162">SergeQuadrado</a>

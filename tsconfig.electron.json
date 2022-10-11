@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "noEmit": false,
+        "outDir": "electron-build/main",
+        "target": "es6",
+        "module": "commonjs",
+    },
+    "extends": "./tsconfig.json",
+    "include": [
+        "src/electron/**/*",
+        "src/externals.d.ts"
+    ],
+}

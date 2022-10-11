@@ -1,5 +1,7 @@
 node_modules/
 .cache/
 public
+electron-build/
+dist/
 src/gatsby-types.d.ts
 .vscode/
