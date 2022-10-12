@@ -198,6 +198,13 @@ To develop in Electron, run:
   * One common issue is using ">" inside an HTML tag in mdx, eg. `<Link to="...">> do thing</Link>`. Put these in a code block like `<Link to "...">{"> do thing"}</Link>`
 
 
+### Potential Improvements
+* Allow deploying only the game instead of the Cyoanide home page etc.
+* Recognize if player has existing game save and ask if they want to continue their save if they're on a "wrong" page
+* Fix Electron path issues
+* Add pretty fade and text effects
+* Add style templates for unique story feel
+
 ### Credits
 * Poison bottle logo: [svgrepo](https://www.svgrepo.com/svg/230355/poison)
 * Photos from [unsplash](https://www.unsplash.com) - see filenames for individual credit

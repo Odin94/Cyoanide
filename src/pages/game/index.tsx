@@ -49,9 +49,6 @@ const Games = ({ data }: PageProps<Queries.GamesQuery>) => {
   )
 }
 
-//                 cropFocus: CENTER
-// fit: COVER
-
 export const query = graphql`
   query Games {
     allMdx(
