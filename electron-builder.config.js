@@ -9,7 +9,7 @@ module.exports = {
 	extraMetadata: {
 		main: 'electron-build/main/electron.js'
 	},
-	files: ['electron-build/**/*', 'node_modules/**/*'],
+	files: ['electron-build/**/*', 'node_modules/**/*', 'public/**/*'],
 	linux: {
 		artifactName: `Cyoanide-${pkg.version}-Linux-\${arch}.zip`,
 		icon: iconPath,

@@ -12,7 +12,9 @@ const config: GatsbyConfig = {
   // If you use VSCode you can also use the GraphQL plugin
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
+  pathPrefix: `__GATSBY_IPFS_PATH_PREFIX__`,
   plugins: [
+    "gatsby-plugin-ipfs",  // this + "__GATSBY_IPFS_PATH_PREFIX__" makes relative paths work for electron, see https://github.com/gatsbyjs/gatsby/discussions/14161
     "gatsby-plugin-sass",
     {
       resolve: 'gatsby-plugin-manifest',
@@ -48,7 +50,12 @@ const config: GatsbyConfig = {
       resolve: "gatsby-plugin-mdx",
       options: {
         extensions: ['.mdx', '.md', '.markdown'],
-        gatsbyRemarkPlugins: ["gatsby-transformer-remark", "gatsby-remark-images"],
+        gatsbyRemarkPlugins: ["gatsby-transformer-remark", {
+          resolve: 'gatsby-remark-images',
+          options: {
+            linkImagesToOriginal: false,
+          }
+        }],
       }
     },
     "gatsby-transformer-sharp",

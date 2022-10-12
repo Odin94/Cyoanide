@@ -20,7 +20,7 @@ Use `npm run build` to build.
 
 
 ## How to use
-This section details how to build your own game using Cyoanide. [Find a demo here.](https://cyoanide.odin-matthias.de/games)
+This section details how to build your own game using Cyoanide. [Find a demo here.](https://cyoanide.odin-matthias.de/game)
 
 Cyoanide, at its core, works like a Gatsby starter (see [Gatsby](https://www.gatsbyjs.com)). This means you use it as a starting project for your Gatsby-powered static website and you can modify the design and add content in the form of markdown documents. On top, Cyoanide provides player decision path tracking and background music support. Look into the `game-pages/CampingGame` folder for an example.
 
@@ -31,10 +31,10 @@ Your `index.mdx` must start with frontmatter that contains configs. Some configs
 
 ```Markdown
 ---
-<!-- Put this only on the entrypoint to your story - it will make the page show up under /games -->
+<!-- Put this only on the entrypoint to your story - it will make the page show up under /game -->
 story_start: true
 
-<!-- Put this only on the entrypoint to your story - this cover image will be shown for your story start under /games -->
+<!-- Put this only on the entrypoint to your story - this cover image will be shown for your story start under /game -->
 story_cover_image: "./mark-boss-dWs3M2rnBk8-unsplash.jpg"
 
 <!-- mandatory slug for your page - this will be the URL used for navigating -->
@@ -180,11 +180,22 @@ import { getLevelState } from '../src/SaveState'
 
 `getLevelState()` will update whenever the user enters a scene, either by clicking a link or by navigating back / forward in the browser. If the current scene is already stored in the level state, all stored scene-slugs after the current scene's slug will be deleted to synchronize level state with the game state the user experiences - effectively making the browser back navigation an undo action on the last choice.
 
+### Distributing as Desktop App
+Cyoanide can almost kind of be built as a Desktop app using Electron.
+
+To develop in Electron, run:
+
+* `npm run build:electron-main` to build Electron to folder `electron-build` (should contain only `electron.js`)
+* `npm run build` to build the web version
+* `npm start` to host the web version locally (must be on port 8000)
+* `npm run run:electron` to run cyoanide in electron
+* `npm run build:electron` to bundle electron to an executable (currently uses windows, replace "--windowns" with "--linux" to build on linux - linux build is untested)
+
+**LIMITATIONS FOR ELECTRON DEPLOYMENT:** Unfortunately Gatsby doesn't play nicely with relative links, which is what is required to access files in the bundled Electron application. See [this discussion](https://github.com/gatsbyjs/gatsby/discussions/14161). Using `gatsby-plugin-ipfs` I could almost make it work, since this plugin allows to use proper relative paths. With this, Electron goes to the right paths (meaning `./game` rather than `C://game`), but doesn't load the `index.html` files in these paths. One way to fix this is to manually add `/index.html` to all Gatsby `<Link>` tags, which will actually make it work. I'm not happy with the solution and since this is just a hobby project and I have no need to deploy to Electron, I'll leave it at this. A possible fix is to extend what `gatsby-plugin-ipfs` does in its `gatsby-node.js` to automatically add `/index.html` to all links. Or maybe Gatsby fixes its config some day.
+
 ### Troubleshooting
 * `SyntaxError: [...] index.mdx: Invalid left-hand side in prefix operation. (1:2)` - Happens whenever something is wrong with mdx syntax - probably something related to react components or js. Wrongly indicates `---` from frontmatter, which is usually not the actual issue
   * One common issue is using ">" inside an HTML tag in mdx, eg. `<Link to="...">> do thing</Link>`. Put these in a code block like `<Link to "...">{"> do thing"}</Link>`
-
-
 
 
 ### Credits

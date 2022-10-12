@@ -17,9 +17,8 @@
   },
   "scripts": {
     "develop": "gatsby develop",
-    "develop:electron": "npm-run-all develop (wait-on http://localhost:8000 && run:electron)",
     "start": "gatsby develop",
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "run:electron": "electron .",
     "electron-buildrun": "npm-run-all build:electron-main --serial run:electron",
     "build:electron": "npm-run-all --parallel build build:electron-main --serial build:electron-bundle",
@@ -35,6 +34,7 @@
     "electron-is-dev": "^2.0.0",
     "gatsby": "^4.23.0",
     "gatsby-plugin-image": "^2.23.0",
+    "gatsby-plugin-ipfs": "^2.0.2",
     "gatsby-plugin-manifest": "^4.23.0",
     "gatsby-plugin-mdx": "^4.2.0",
     "gatsby-plugin-sass": "^5.23.0",
@@ -56,8 +56,8 @@
     "@types/react-dom": "^18.0.6",
     "electron": "^21.1.0",
     "electron-builder": "^23.6.0",
-    "typescript": "^4.8.3",
-    "wait-on": "^6.0.1"
+    "npm-run-all": "^4.1.5",
+    "typescript": "^4.8.3"
   },
   "main": "electron-build/main/electron.js"
 }

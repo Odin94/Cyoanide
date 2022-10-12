@@ -4,8 +4,6 @@ import * as path from "path";
 
 function createWindow() {
     const screenSize = screen.getPrimaryDisplay().workAreaSize;
-    console.log({ screenSize })
-
 
     const mainWindow = new BrowserWindow({
         height: Math.round(screenSize.height * 0.9),
@@ -26,7 +24,6 @@ function createWindow() {
 
 app.whenReady().then(() => {
     createWindow();
-
 
     app.on("activate", function () {
         // On macOS it's common to re-create a window in the app when the
