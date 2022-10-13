@@ -1,6 +1,6 @@
 const pkg = require('./package.json');
 
-const iconPath = "images/poison-svgrepo-com.svg"
+const iconPath = "src/images/poison-svgrepo-com.png"
 
 module.exports = {
 	directories: {
