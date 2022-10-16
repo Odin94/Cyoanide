@@ -10,6 +10,8 @@
 ## Summary
 Choose Your Own Adventure game "engine" built with Gatsby.
 
+[Dev blog post](https://odin-matthias.de/posts/2022-10-03--cyoanide-a-choose-your-own-adventure-engine/cyoanide-a-choose-your-own-adventure-engine)
+
 
 ## How to run
 * Install dependencies: `npm install`
