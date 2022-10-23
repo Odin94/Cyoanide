@@ -17,7 +17,7 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-prettier-build`,
       options: {
-        types: ['html', 'js'],
+        types: ['js'],
         concurrency: 20,
         verbose: false
       }
