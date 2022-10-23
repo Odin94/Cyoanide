@@ -8,7 +8,7 @@ import Seo from '../../components/Seo'
 import useSound from 'use-sound'
 import { Howl, Howler } from 'howler'
 import Layout from '../../components/Layout'
-import { saveLevelState } from '../../SaveState'
+import { saveGameName, saveLevelState } from '../../SaveState'
 
 // type auto-generation from queries only works if queries can be named
 // query in template-y files can't be named because they'd create multiple queries with the same name
@@ -20,13 +20,21 @@ type DataProps = {
       slug: string,
       music?: {
         publicURL?: string
-      }
+      },
+      story_start?: boolean
     }
   }
 }
 
 const GamePage = ({ data, children }: PageProps<DataProps>) => {
   const music = data.mdx.frontmatter.music?.publicURL
+
+  React.useEffect(() => {
+    if (data.mdx.frontmatter.story_start) {
+      saveGameName(data.mdx.frontmatter.title)
+    }
+  }, [])
+
 
   // Can't do this inside something like useEffect(fn, []) because mdx doesn't re-render when data changes
   // (at least I couldn't make a dependency to "children" clear to react)
@@ -64,6 +72,7 @@ export const query = graphql`
         music {
           publicURL
         }
+        story_start
       }
     }
   }

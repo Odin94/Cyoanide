@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react'
-import { Link, graphql, PageProps } from 'gatsby'
+import { graphql, Link, PageProps } from 'gatsby'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { Howler } from 'howler'
+import React, { useEffect, useState } from 'react'
+import { Card, Col, Row } from 'react-bootstrap'
+import { LoadSavedGameModal } from '../../components/LoadSavedGameModal'
 import NavbarLayout from '../../components/NavbarLayout'
 import Seo from '../../components/Seo'
-import { Howler } from 'howler'
-import { Row, Col, Card } from 'react-bootstrap'
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { resetLevelState } from '../../SaveState'
 
 const Games = ({ data }: PageProps<Queries.GamesQuery>) => {
+  let [modalComponent, setModalComponent] = useState(<></>)
   useEffect(() => {
-    resetLevelState()
+    // has to be inside useEffect because we don't want to render it during SSR
+    setModalComponent(<LoadSavedGameModal />)
   }, [])
 
   Howler.stop()
@@ -45,6 +47,7 @@ const Games = ({ data }: PageProps<Queries.GamesQuery>) => {
           })
         }
       </Row>
+      {modalComponent}
     </NavbarLayout >
   )
 }
@@ -64,7 +67,6 @@ export const query = graphql`
             childImageSharp {
               gatsbyImageData(
                 placeholder: BLURRED
-
               )
             }
           }
