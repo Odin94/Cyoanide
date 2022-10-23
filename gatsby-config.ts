@@ -12,9 +12,16 @@ const config: GatsbyConfig = {
   // If you use VSCode you can also use the GraphQL plugin
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
-  pathPrefix: `__GATSBY_IPFS_PATH_PREFIX__`,
+  pathPrefix: `__GATSBY_IPFS_PATH_PREFIX__`,  // "__GATSBY_IPFS_PATH_PREFIX__" + code in gatsby-node makes relative paths work for electron, see https://github.com/gatsbyjs/gatsby/discussions/14161
   plugins: [
-    "gatsby-plugin-ipfs",  // this + "__GATSBY_IPFS_PATH_PREFIX__" makes relative paths work for electron, see https://github.com/gatsbyjs/gatsby/discussions/14161
+    {
+      resolve: `gatsby-plugin-prettier-build`,
+      options: {
+        types: ['js'],
+        concurrency: 20,
+        verbose: false
+      }
+    },
     "gatsby-plugin-sass",
     {
       resolve: 'gatsby-plugin-manifest',
