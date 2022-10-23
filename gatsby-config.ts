@@ -14,7 +14,15 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   pathPrefix: `__GATSBY_IPFS_PATH_PREFIX__`,
   plugins: [
-    "gatsby-plugin-ipfs",  // this + "__GATSBY_IPFS_PATH_PREFIX__" makes relative paths work for electron, see https://github.com/gatsbyjs/gatsby/discussions/14161
+    {
+      resolve: `gatsby-plugin-prettier-build`,
+      options: {
+        types: ['html', 'js'],
+        concurrency: 20,
+        verbose: false
+      }
+    },
+    // "gatsby-plugin-ipfs",  // this + "__GATSBY_IPFS_PATH_PREFIX__" makes relative paths work for electron, see https://github.com/gatsbyjs/gatsby/discussions/14161
     "gatsby-plugin-sass",
     {
       resolve: 'gatsby-plugin-manifest',

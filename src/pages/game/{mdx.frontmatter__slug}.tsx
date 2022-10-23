@@ -41,6 +41,10 @@ const GamePage = ({ data, children }: PageProps<DataProps>) => {
   // thus inside the mdx files it would sometimes have outdated levelState info
   saveLevelState(data.mdx.frontmatter.slug)
 
+  React.useEffect(() => {
+    saveLevelState(data.mdx.frontmatter.slug)
+  }, [data.mdx.frontmatter.slug])
+
   const musicIsAlreadyPlaying = (Howler as any)._howls.find((howl: Howl | any) => {
     return howl._src === music && howl.playing()
   })
