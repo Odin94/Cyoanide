@@ -116,6 +116,7 @@ const relativizeMiscAssetFiles = async () => {
         const relativePrefix = getRelativePrefix(path);
 
         contents = contents
+        .replace(/\/__GATSBY_IPFS_PATH_PREFIX__\/icons/g, "/icons")  // need to replace icon path in manifest.webmanifest
         .replace(/\/__GATSBY_IPFS_PATH_PREFIX__\//g, () => relativePrefix);
 
         await writeFileAsync(path, contents);
