@@ -68,7 +68,7 @@ const relativizeJsFiles = async () => {
         contents = contents
         // Fix issue with rendered mdx img tags (but may break other stuff..?)  (src= and "src": and srcSets)
         .replace(/src":.+\/__GATSBY_IPFS_PATH_PREFIX__\/static/g, "src: \"/static")
-        .replace(/src="\s*.+\/__GATSBY_IPFS_PATH_PREFIX__\/static/g, "src=\"static")
+        .replace(/src="\s*.+\/__GATSBY_IPFS_PATH_PREFIX__\/static/g, "src=\"/static")
         .replace(/["']\/__GATSBY_IPFS_PATH_PREFIX__['"]/g, () => ' __GATSBY_IPFS_PATH_PREFIX__ ')
         // Excluding \ with a lookback fixes unexpected character error (was replacing inside a string)
         .replace(/(?<!\\)(["'])\/__GATSBY_IPFS_PATH_PREFIX__\/([^'"]*?)(['"])/g, (matches, g1, g2, g3) => ` __GATSBY_IPFS_PATH_PREFIX__ + ${g1}/${g2}${g3}`)
