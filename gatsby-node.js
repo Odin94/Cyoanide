@@ -1,5 +1,11 @@
 'use strict';
 
+/*
+    This is strongly inspired by https://github.com/moxystudio/gatsby-plugin-ipfs
+    However I have to use my custom version here because I want to do some rough replacements for static/ and icons/
+    that may not apply to other users of the project. I did contribute a bug fix PR though: https://github.com/moxystudio/gatsby-plugin-ipfs/pull/26
+*/
+
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
@@ -62,13 +68,13 @@ const relativizeJsFiles = async () => {
         // TODO: THIS IS THE LINE (tested & confirmed)
         // Output SHOULD be: "We couldn't load \"/__GATSBY_IPFS_PATH_PREFIX__/page-data/sq/d/" +
         contents = contents
-        // Fix issue with rendered mdx img tags (but may break other stuff..?)
-        .replace(/\/__GATSBY_IPFS_PATH_PREFIX__\/static/g, "/static")
+        // Fix issue with rendered mdx img tags (but may break other stuff..?)  (src= and "src": and srcSets)
+        .replace(/src":.+\/__GATSBY_IPFS_PATH_PREFIX__\/static/g, "src: \"/static")
+        .replace(/src="\s*.+\/__GATSBY_IPFS_PATH_PREFIX__\/static/g, "src=\"static")
         .replace(/["']\/__GATSBY_IPFS_PATH_PREFIX__['"]/g, () => ' __GATSBY_IPFS_PATH_PREFIX__ ')
         // Excluding \ with a lookback fixes unexpected character error (was replacing inside a string)
         // Excluding the (src=) thing prevents messing up rendered mdx img tags  (double check if necessary)
-        // But fixing the rendered img tags requires also fixing `srcSet`s, so `contents = contents.replace(/\/__GATSBY_IPFS_PATH_PREFIX__\/static/g, "/static")` from above is required
-        .replace(/(?<!\\|src=|src":)(["'])\/__GATSBY_IPFS_PATH_PREFIX__\/([^'"]*?)(['"])/g, (matches, g1, g2, g3) => ` __GATSBY_IPFS_PATH_PREFIX__ + ${g1}/${g2}${g3}`)  // `"We couldn't load "/__GATSBY_IPFS_FAKE_PREFIX__/page-data/sq/d/" +`
+        .replace(/(?<!\\)(["'])\/__GATSBY_IPFS_PATH_PREFIX__\/([^'"]*?)(['"])/g, (matches, g1, g2, g3) => ` __GATSBY_IPFS_PATH_PREFIX__ + ${g1}/${g2}${g3}`)
 
         // "We couldn't load \"/__GATSBY_IPFS_PATH_PREFIX__/page-data/sq/d/" + +  <-- correct
         // "We couldn't load "/__GATSBY_IPFS_FAKE_PREFIX__/page-data/sq/d/" +   <-- first replace (incorrect)
@@ -112,10 +118,9 @@ const relativizeMiscAssetFiles = async () => {
         const relativePrefix = getRelativePrefix(path);
 
         contents = contents
-        // TODO: some icons seem to use relative paths - do another replace?
+        // Fix issues with icons - they're always at /icons, never at any relative path
         .replace(/\/__GATSBY_IPFS_PATH_PREFIX__\/icons/g, "/icons")  // need to replace icon path in manifest.webmanifest
-        // TODO: This one may not be needed
-        .replace(/\/__GATSBY_IPFS_PATH_PREFIX__\/static/g, "/static")  // need to replace static links in compiled mdx within js (and here maybe in mdx files pre-compilation..?)
+        .replace(/\/".+\/favicon/g, "\"/favicon")  // favicon paths are sometimes relative when they really shouldn't be
         .replace(/\/__GATSBY_IPFS_PATH_PREFIX__\//g, () => relativePrefix);
 
         await writeFileAsync(path, contents);
