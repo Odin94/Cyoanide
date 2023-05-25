@@ -3,7 +3,6 @@ import { Link, useStaticQuery, graphql } from 'gatsby'
 import './layout.scss'
 import { Container } from 'react-bootstrap'
 import { MDXProvider } from '@mdx-js/react'
-import poisonIcon from '../images/poison-svgrepo-com.svg'
 
 const shortcodes = { Link } // Provide common components here
 

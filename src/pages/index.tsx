@@ -29,7 +29,7 @@ const IndexPage = ({ data }: PageProps<Queries.IndexPageQuery>) => {
       />
       <p style={{ marginTop: "25px" }}>Check out the <a style={{ display: "inline" }} href="https://github.com/Odin94/Cyoanide">README on Github</a> for instructions on how to use Cyoanide to write your own stories.</p>
       <p>Check out the <Link style={{ display: "inline" }} to="/games">Games Page</Link> to see stories hosted here.</p>
-      <p>Check out my <a style={{ display: "inline" }} href="https://www.odin-matthias.de/cyoanide">Development Blog</a> for info on the throughts & tech behind Cyoanide.</p>
+      <p>Check out my <a style={{ display: "inline" }} href="https://odin-matthias.de/posts/2022-10-03--cyoanide-a-choose-your-own-adventure-engine/cyoanide-a-choose-your-own-adventure-engine">Development Blog</a> for info on the throughts & tech behind Cyoanide.</p>
     </NavbarLayout>
   )
 }
